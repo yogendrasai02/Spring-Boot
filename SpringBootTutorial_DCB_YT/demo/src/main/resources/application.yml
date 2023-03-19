@@ -1,0 +1,63 @@
+server:
+  port: 8080
+
+sample:
+  message: "There are two ways to write error-free programs; only the third works."
+
+spring:
+  profiles:
+    active: DEV
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: DEV
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: password
+    url: jdbc:mysql://localhost:3306/departments_db
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: UAT
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: password
+    url: jdbc:mysql://localhost:3306/departments_db_uat
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: PROD
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: password
+    url: jdbc:mysql://localhost:3306/departments_db_prod
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
